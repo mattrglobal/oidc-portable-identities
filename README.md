@@ -1,6 +1,6 @@
 # OpenID Connect Portable Identities
 
-[Latest Draft](https://mattrglobal.github.io/oidc-client-bound-assertions-spec/)
+[Latest Draft](https://mattrglobal.github.io/oidc-portable-identities/)
 
 This repository is the home to a draft specification to extend an OpenID Connect Provider to support the notion of portable identities which
 is essentially the capability for an end-user to maintain a consistent identity with a relying party whilst changing the underlying IDP.

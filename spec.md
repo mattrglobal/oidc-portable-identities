@@ -91,6 +91,8 @@ subject\_id\_types\_supported
 did\_methods\_supported
 : OPTIONAL. A JSON array of strings used in conjunction with the identifier type `did`. This metadata element describes whether the client supports the resolution of [@!decentralized_identifiers] and further more which decentralized identifier methods. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]). 
 
+[TBD] is this element required if the did subject identifier type is supported?
+
 A non-normative extract from the OP Metadata depicting these elements
 
 ```json
@@ -118,6 +120,8 @@ subject\_id\_types\_supported
     
 did\_methods\_supported
 : OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of [@!decentralized_identifiers] and further more which decentralized identifier methods (a full enumeration can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]) the client supports. 
+
+[TBD] is this element required if the did subject identifier type is supported?
 
 # Subject Identifier Assertion
 

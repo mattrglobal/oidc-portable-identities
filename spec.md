@@ -74,11 +74,26 @@ TODO
 
 ## Overview
 
-Diagrams for review
+[TBD] I think we need to first describe the fundamental idea. The following bullets are intended to be a starting point.
 
-TODO insert diagrams
+* client sets up relationsship
+* client sends standard OpenID COnnect authentication request
+* OP authenticates end-user
+* OP determines identifier types (and did methods) the client supports
+* OP offers suitable identifiers to the end-user
+* end-user picks identifier
+* OP and end-user create proof of possession (Subject Identifier Assertion)
+* OP creates id token and embedds subject identifier assertion
+* OP responds to RP with id token
+* RP validates id token
+* RP validates subject identifier assertion
+* RP uses portable identifier
 
-# Provider Discovery Extension
+// Diagrams for review
+
+// TODO insert diagrams
+
+# OP Metadata Extension {#op_metadata}
 
 The following section outlines how an OpenID provider can use the following meta-data elements in its openid-configuration as defined in [@!OpenID-Discovery] to advertise the identifier types it supports, which especially includes metadata about portable subject identifiers.
 
@@ -123,51 +138,80 @@ did\_methods\_supported
 
 [TBD] is this element required if the did subject identifier type is supported?
 
-# Subject Identifier Assertion
+# Subject Identifier Assertion {#subject_identifier_assertion}
 
-This assertion MUST be of the form of a compact JWT
+The Subject Identifier Assertion represents to End-user's proof of possession of the key material corresponding to a cryptographically verifiable identifier. This assertion is embedded by the OP into the ID token provided to the RP in response for an OpenID Connect authentication request. 
+
+This assertion MUST be of the form of a compact JWT.
+
+The JWT contains the following claims:
+
+iss
+: issuer of the subject identifier assertion represented by the DID of the End-user.
+
+[TBD] could this also be the identifier of an agent acting on behalf of the end-user?
+
+sub
+: the subject of the subject identifier assertion
+
+[TBD] shouldn't this be the end user as well?
+
+aud
+: REQUIRED. the audience of the JWT represented by the client_id of the respective RP
+
+nonce
+: REQUIRED. the nonce as provided by the RP in the OpenID Connect request. This claims binds the subject identifier assertion to a particular transaction in orrder to prevent replay in a different transaction. 
+
+iat
+: iat. identifies the time when the subject identifier assertion was issued.
 
 // TODO What claims need to be in this and what constraints should be applied
 
-A non-normative example of the request.
+A non-normative example of the claims in a subject identifier assertion is shown in the following.
 
 ```json
 {
     "iss": "did:example:12345",
     "sub": "https://issuer.com/",
-    "aud": "https://client.example.org/cb",
+    "aud": "s6BhdRkqt3",
     "nonce": "n-0S6_WzA2Mj",
     "iat": 1311280970
 }
 ```
 
-Carefully consider what claims in the JWT for this assertion and their associated constraints i.e in reference to the id_token in which it will appear. 
+// Carefully consider what claims in the JWT for this assertion and their associated constraints i.e in reference to the id_token in which it will appear. 
 
-We should include a JWT header in the protected header that informs the consumer about the nature of the JWT? One option is to use the "typ" claim.
-Needs to be defined and registered. Doing this prevents the assertion from being used out of its intended designation i.e id_token being used as an access_token.
+// We should include a JWT header in the protected header that informs the consumer about the nature of the JWT? One option is to use the "typ" claim.
+// Needs to be defined and registered. Doing this prevents the assertion from being used out of its intended designation i.e id_token being used as an access_token.
 
-Should the only required claims just be iss and nonce?
+// Should the only required claims just be iss and nonce?
 
-We need a more systematic threat analysis there are multiple adversaries
-1. A rouge OP
-2. Man in the middle
+// We need a more systematic threat analysis there are multiple adversaries
+// 1. A rouge OP
+// 2. Man in the middle
 
 // TODO define the validation logic
 
+// signature algorthms including discovery (client needs to support alg)
+
 # Cryptographic Subject Identifier ID Token Extension
 
-This following section defines the additional (JWT) claims required to express the End-User as the subject of an `id_token` through the use of a portable subject identifier.
+This following section defines the additional (JWT) claims required to express the End-User as the subject of an id token through the use of a portable subject identifier.
     
 sub\_id\_type
-: OPTIONAL. Subject identifier type, this claim has a value which reports the type of subject identifier reported in the `sub` claim of the `id_token` and therefore how to validate the `sub_ast` claim. 
+: OPTIONAL. Subject identifier type, this claim has a value which reports the type of subject identifier reported in the `sub` claim of the id token and therefore how to validate the `sub_ast` claim. For allowed values see (#op_metadata). 
     
 sub\_ast
-: REQUIRED. IF sub_id_type is not ...??? (Ask mike) Subject identifier assertion, this claim has a value that is of the form of a compact JWT which when validated prooves control of the subject identifier reported in the `sub` claim of the `id_token`. // TODO link to the subject identifier assertion section and validation logic
+: REQUIRED. IF sub_id_type is not `op-bound`. Subject identifier assertion, this claim has a value that is of the form of a compact JWT (see (#subject_identifier_assertion)) which when validated prooves control of the subject identifier reported in the `sub` claim of the `id_token`. 
+
+// TODO link to the subject identifier assertion section and validation logic
+
+[TBD] check back with Mike re traditional OIDC identifiers
 
 sub
-: REQUIRED. Subject identifier a globally unique identifier who's type is defined by the `sub_id_type` claim in the `id_token` and proof of control of the identifier can be established through validating the `sub_ast` claim in the `id_token`.
+: REQUIRED. Subject identifier - in case of portable identifiers (e.g. `sub_id_type` is `did`) a globally unique identifier who's type is defined by the `sub_id_type` claim in the id token and proof of control of the identifier can be established through validating the `sub_ast` claim in the same id token.
    
-A non-normative example of the request.
+A non-normative example of the contents of an id token.
 
 ```json
 {
@@ -181,12 +225,15 @@ A non-normative example of the request.
     "iat": 1311280970
 }
 ```
+[TBD] add real sub ast example
 
 ## Additional ID Token Validation Steps
 
-Start with what happens for a conventional RP that doesn't not support portable identifiers ..?
+The RP first performs the Authentication Response Validation as defined in steps as defined [@!OpenID]. This ensures backward compabtibility and security since any OIDC RPs that will use the `sub` value without performing the additional steps defined below will use the `sub` value in conjuction with the OP's issuer URL only. 
 
-A Relying Party processing an `id_token` that is making use of a portable subject identifier MUST employ the following additional validation steps beyond those defined in [Section 3.1.3.7](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation) of OpenID Connect Core.
+In the next step, a portable identifier aware RP will perform the following checks:
+
+A Relying Party processing an `id_token` that is making use of a portable subject identifier MUST employ the following additional validation steps beyond those defined in [Section 3.1.3.7](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation) of [@!OpenID].
 
 // TODO validating the sub\_\st and its relationship to the sub value when sub\_id\_type is not the default ...?
 
@@ -207,6 +254,28 @@ In traditional OpenID Connect the End-User that is authenticated by the provider
 With portable subject identifiers the relationship between the End-User and the provider changes. 
 
 {backmatter}
+
+<reference anchor="OpenID" target="http://openid.net/specs/openid-connect-core-1_0.html">
+  <front>
+    <title>OpenID Connect Core 1.0 incorporating errata set 1</title>
+    <author initials="N." surname="Sakimura" fullname="Nat Sakimura">
+      <organization>NRI</organization>
+    </author>
+    <author initials="J." surname="Bradley" fullname="John Bradley">
+      <organization>Ping Identity</organization>
+    </author>
+    <author initials="M." surname="Jones" fullname="Mike Jones">
+      <organization>Microsoft</organization>
+    </author>
+    <author initials="B." surname="de Medeiros" fullname="Breno de Medeiros">
+      <organization>Google</organization>
+    </author>
+    <author initials="C." surname="Mortimore" fullname="Chuck Mortimore">
+      <organization>Salesforce</organization>
+    </author>
+   <date day="8" month="Nov" year="2014"/>
+  </front>
+</reference>
 
 <reference anchor="OpenIDPorting" target="https://openid.net/specs/openid-connect-account-porting-1_0.html">
   <front>

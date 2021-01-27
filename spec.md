@@ -78,33 +78,27 @@ Diagrams for review
 
 TODO insert diagrams
 
-# Client Metadata Extension
-
-The following section outlines the additional metadata elements required for a client to express support to a provider for portable subject identifiers.
-
-subject\_id\_types\_supported
-: OPTIONAL. An array of strings. This metadata element describes the subject identifier types supported by the registering client. Valid values SHOULD be a subset of those that the provider the client is registering supports which can be found via the `subject_id_types_supported` discovery element.
-    
-did\_methods\_supported
-: OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of [@!decentralized_identifiers] and further more which decentralized identifier methods (a full enumeration can be found in the "decentralized identifier method registry" (see [@!did_specs_registry] the client supports. Providers SHOULD interpret omission of this element from the clients registered metadata as the client not supporting decentralized identifiers.
-
 # Provider Discovery Extension
 
-The following section outlines how an OpenID provider can use the following meta-data elements to advertise its support for portable subject identifiers in its openid-configuration defined by [@!OpenID-Discovery].
+The following section outlines how an OpenID provider can use the following meta-data elements in its openid-configuration as defined in [@!OpenID-Discovery] to advertise the identifier types it supports, which especially includes metadata about portable subject identifiers.
 
 subject\_id\_types\_supported
-: OPTIONAL. A JSON array of strings. This metadata element describes the subject identifier types supported by the registering client. Valid values SHOULD be a subset of those that the provider the client is registering supports which can be found via the subject_id_types_supported discovery element.
+: OPTIONAL. A JSON array of strings. This metadata element describes the subject identifier types supported by the respective OP. This specification defines the following values:
+* `jwkthumb`: the identifier constitutes the thumbprint of a JWK 
+* `did`: the identifier constitutes a decentralized identifier as defined in [@!decentralized_identifiers]
+* `op-bound`: the "classical" OpenID Connect identifier. The identifier is built by concatinating the `sub` value, created and maintained by the OP, and the OP's issuer URL.  
     
 did\_methods\_supported
-: OPTIONAL. A JSON array of strings. This metadata element describes whether the client supports the resolution of [@!decentralized_identifiers] and further more which decentralized identifier methods (a full enumeration can be found in the decentralized identifier method registry) the client supports. Providers SHOULD interpret omission of this element from the clients registered metadata as the client not supporting decentralized identifiers.
+: OPTIONAL. A JSON array of strings used in conjunction with the identifier type `did`. This metadata element describes whether the client supports the resolution of [@!decentralized_identifiers] and further more which decentralized identifier methods. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]). 
 
-A non-normative extract from the Client Metadata depicting these elements
+A non-normative extract from the OP Metadata depicting these elements
 
 ```json
 {
     "subject_id_types": [
         "jwkthumb",
-        "did"
+        "did",
+        "op-bound"
     ],
     "did_methods_supported": [
         "elem",
@@ -115,8 +109,15 @@ A non-normative extract from the Client Metadata depicting these elements
 }
 ```
 
-Torsten 
-1. Do we need existing identifier values for the existing subject identifier type?
+# Client Metadata Extension
+
+The following section outlines the additional metadata elements required for a client to express support for specific identifier types.
+
+subject\_id\_types\_supported
+: OPTIONAL. An array of strings. This metadata element describes the subject identifier types supported by the registering client. Valid values MUST be a subset of those that the OP the client is registering with supports, which can be found in respective `subject_id_types_supported` metadata element.
+    
+did\_methods\_supported
+: OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of [@!decentralized_identifiers] and further more which decentralized identifier methods (a full enumeration can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]) the client supports. 
 
 # Subject Identifier Assertion
 

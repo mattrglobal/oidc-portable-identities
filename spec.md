@@ -104,7 +104,7 @@ sub\_id\_types\_supported
 * `op-bound`: the "classical" OpenID Connect identifier. The identifier is built by concatinating the `sub` value, created and maintained by the OP, and the OP's issuer URL.  
     
 did\_methods\_supported
-: OPTIONAL. A JSON array of strings used in conjunction with the identifier type `did`. This metadata element describes whether the client supports the resolution of [@!decentralized_identifiers] and further more which decentralized identifier methods. Each array value contains the DID method `method-name` as per [@!decentralized_identifiers]. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]). 
+: OPTIONAL. A JSON array of strings used in conjunction with the identifier type `did`. This metadata element describes whether the client supports the resolution of [@!decentralized_identifiers] and further more which decentralized identifier methods. Each array value contains the DID method name as per [@!decentralized_identifiers]. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]). 
 
 [TBD] is this element required if the did subject identifier type is supported?
 
@@ -134,7 +134,7 @@ sub\_id\_types\_supported
 : OPTIONAL. An array of strings. This metadata element describes the subject identifier types supported by the registering client. Valid values MUST be a subset of those that the OP the client is registering with supports, which can be found in respective `sub_id_types_supported` metadata element.
     
 did\_methods\_supported
-: OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of [@!decentralized_identifiers] and further more which decentralized identifier methods. Each array element contains the DID method `method-name` as per [@!decentralized_identifiers]. A full enumeration can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]) the client supports. 
+: OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of [@!decentralized_identifiers] and further more which decentralized identifier methods. Each array element contains the DID method name as per [@!decentralized_identifiers]. A full enumeration can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]) the client supports. 
 
 [TBD] is this element required if the did subject identifier type is supported?
 

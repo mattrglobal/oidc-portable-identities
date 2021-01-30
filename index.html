@@ -1091,7 +1091,7 @@ tr:nth-child(2n+1) > td {
 <dd class="individual-draft">openid-portable-identities-01</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-01-28" class="published">28 January 2021</time>
+<time datetime="2021-01-30" class="published">30 January 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
@@ -1111,7 +1111,7 @@ tr:nth-child(2n+1) > td {
 </div>
 <div class="author">
       <div class="author-name">O. Terbu</div>
-<div class="org">Consensys</div>
+<div class="org">ConsenSys</div>
 </div>
 </dd>
 </dl>
@@ -1270,7 +1270,7 @@ tr:nth-child(2n+1) > td {
       </h2>
 <p id="section-2-1">The following section outlines how an OpenID provider can use the following meta-data elements in its openid-configuration as defined in <span>[<a href="#OpenID-Discovery" class="xref">OpenID-Discovery</a>]</span> to advertise the identifier types it supports, which especially includes metadata about portable subject identifiers.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <dl class="dlParallel" id="section-2-2">
-        <dt id="section-2-2.1">subject_id_types_supported</dt>
+        <dt id="section-2-2.1">sub_id_types_supported</dt>
 <dd id="section-2-2.2">
           <p id="section-2-2.2.1">OPTIONAL. A JSON array of strings. This metadata element describes the subject identifier types supported by the respective OP. This specification defines the following values:<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1289,7 +1289,7 @@ tr:nth-child(2n+1) > td {
 <dl class="dlParallel" id="section-2-4">
         <dt id="section-2-4.1">did_methods_supported</dt>
 <dd id="section-2-4.2">
-          <p id="section-2-4.2.1">OPTIONAL. A JSON array of strings used in conjunction with the identifier type <code>did</code>. This metadata element describes whether the client supports the resolution of <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span> and further more which decentralized identifier methods. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see <span>[<a href="#did_specs_registry" class="xref">did_specs_registry</a>]</span>).<a href="#section-2-4.2.1" class="pilcrow">¶</a></p>
+          <p id="section-2-4.2.1">OPTIONAL. A JSON array of strings used in conjunction with the identifier type <code>did</code>. This metadata element describes whether the client supports the resolution of <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span> and further more which decentralized identifier methods. Each array value contains the DID method name as per <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span>. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see <span>[<a href="#did_specs_registry" class="xref">did_specs_registry</a>]</span>).<a href="#section-2-4.2.1" class="pilcrow">¶</a></p>
 </dd>
 </dl>
 <p id="section-2-5">[TBD] is this element required if the did subject identifier type is supported?<a href="#section-2-5" class="pilcrow">¶</a></p>
@@ -1319,13 +1319,13 @@ tr:nth-child(2n+1) > td {
       </h2>
 <p id="section-3-1">The following section outlines the additional metadata elements required for a client to express support for specific identifier types.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <dl class="dlParallel" id="section-3-2">
-        <dt id="section-3-2.1">subject_id_types_supported</dt>
+        <dt id="section-3-2.1">sub_id_types_supported</dt>
 <dd id="section-3-2.2">
-          <p id="section-3-2.2.1">OPTIONAL. An array of strings. This metadata element describes the subject identifier types supported by the registering client. Valid values MUST be a subset of those that the OP the client is registering with supports, which can be found in respective <code>subject_id_types_supported</code> metadata element.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.2.1">OPTIONAL. An array of strings. This metadata element describes the subject identifier types supported by the registering client. Valid values MUST be a subset of those that the OP the client is registering with supports, which can be found in respective <code>sub_id_types_supported</code> metadata element.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </dd>
 <dt id="section-3-2.3">did_methods_supported</dt>
 <dd id="section-3-2.4">
-          <p id="section-3-2.4.1">OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span> and further more which decentralized identifier methods (a full enumeration can be found in the "decentralized identifier method registry" (see <span>[<a href="#did_specs_registry" class="xref">did_specs_registry</a>]</span>) the client supports.<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.4.1">OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span> and further more which decentralized identifier methods. Each array element contains the DID method name as per <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span>. A full enumeration can be found in the "decentralized identifier method registry" (see <span>[<a href="#did_specs_registry" class="xref">did_specs_registry</a>]</span>) the client supports.<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
 </dd>
 </dl>
 <p id="section-3-3">[TBD] is this element required if the did subject identifier type is supported?<a href="#section-3-3" class="pilcrow">¶</a></p>
@@ -1479,6 +1479,9 @@ tr:nth-child(2n+1) > td {
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
+<dt id="RFC2119">[RFC2119]</dt>
+<dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dt id="OpenID-Discovery">[OpenID-Discovery]</dt>
 <dd>
 <span class="refAuthor">Sakimura, N.</span><span class="refAuthor">, Bradley, J.</span><span class="refAuthor">, de Medeiros, B.</span><span class="refAuthor">, and E. Jay</span>, <span class="refTitle">"OpenID Connect Discovery 1.0 incorporating errata set 1"</span>, <time datetime="2014-11-08">8 November 2014</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-discovery-1_0.html">https://openid.net/specs/openid-connect-discovery-1_0.html</a>&gt;</span>. </dd>
@@ -1494,9 +1497,6 @@ tr:nth-child(2n+1) > td {
 <dt id="OpenIDPorting">[OpenIDPorting]</dt>
 <dd>
 <span class="refAuthor">Manger, J.</span><span class="refAuthor">, Lodderstedt, T.</span><span class="refAuthor">, and A. Gleditsch</span>, <span class="refTitle">"OpenID Connect Account Porting"</span>, <time datetime="2017-03-06">6 March 2017</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-account-porting-1_0.html">https://openid.net/specs/openid-connect-account-porting-1_0.html</a>&gt;</span>. </dd>
-<dt id="RFC2119">[RFC2119]</dt>
-<dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 </dl>
 </section>
 <section id="section-9">
@@ -1535,7 +1535,7 @@ tr:nth-child(2n+1) > td {
 </address>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Oliver Terbu</span></div>
-<div dir="auto" class="left"><span class="org">Consensys</span></div>
+<div dir="auto" class="left"><span class="org">ConsenSys</span></div>
 </address>
 </section>
 </div>

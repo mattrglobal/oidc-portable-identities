@@ -243,13 +243,11 @@ A sub type is used by the OP to advertise which types of identifiers are support
 
 ## JWK Thumbprint
 
-`jkt` 
-    JWK Thumbprint Subject type. When this subject type is used, the `sub` claim value MUST be the base64url encoded representation of the thumbprint of the key in the `sub_jwk` Claim. [RFC7638]
+JWK Thumbprint Subject type. When this subject type is used, the `sub` claim value MUST be the base64url encoded representation of the thumbprint of the key in the `sub_jwk` Claim. [RFC7638]
     
 ## Decentralized Identifier
 
-`did` 
-    Decentralized Identifier subject type. When this subject type is used, the `sub` claim value MUST be a Decentralized Identifier (DID) following [DID-CORE](https://www.w3.org/TR/did-core/). 
+Decentralized Identifier subject type. When this subject type is used, the `sub` claim value MUST be a Decentralized Identifier (DID) following [DID-CORE](https://www.w3.org/TR/did-core/). 
 
 # Security Considerations
 

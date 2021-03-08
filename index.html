@@ -1074,7 +1074,7 @@ tr:nth-child(2n+1) > td {
 <thead><tr>
 <td class="left"></td>
 <td class="center">OpenID Connect Portable Identities</td>
-<td class="right">January 2021</td>
+<td class="right">March 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Looker, et al.</td>
@@ -1091,7 +1091,7 @@ tr:nth-child(2n+1) > td {
 <dd class="individual-draft">openid-portable-identities-01</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-01-30" class="published">30 January 2021</time>
+<time datetime="2021-03-08" class="published">8 March 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
@@ -1171,16 +1171,35 @@ tr:nth-child(2n+1) > td {
 </ul>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-usecases" class="xref">Usecases</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty">
+<li class="toc ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-planned-provider-death" class="xref">Planned Provider Death</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
+</li>
+<li class="toc ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-account-consolidation" class="xref">Account Consolidation</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-implementation-consideratio" class="xref">Implementation Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty">
+<li class="toc ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-did-methods" class="xref">DID Methods</a><a href="#section-toc.1-1.8.2.1.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+</li>
+<li class="toc ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+</li>
+<li class="toc ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
 </li>
 </ul>
 </nav>
@@ -1270,7 +1289,7 @@ tr:nth-child(2n+1) > td {
       </h2>
 <p id="section-2-1">The following section outlines how an OpenID provider can use the following meta-data elements in its openid-configuration as defined in <span>[<a href="#OpenID-Discovery" class="xref">OpenID-Discovery</a>]</span> to advertise the identifier types it supports, which especially includes metadata about portable subject identifiers.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <dl class="dlParallel" id="section-2-2">
-        <dt id="section-2-2.1">sub_id_types_supported</dt>
+        <dt id="section-2-2.1">sub<em>id</em>types_supported</dt>
 <dd id="section-2-2.2">
           <p id="section-2-2.2.1">OPTIONAL. A JSON array of strings. This metadata element describes the subject identifier types supported by the respective OP. This specification defines the following values:<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1283,11 +1302,11 @@ tr:nth-child(2n+1) > td {
           <p id="section-2-3.2.1"><code>did</code>: the identifier constitutes a decentralized identifier as defined in <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span><a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
 </li>
 <li id="section-2-3.3">
-          <p id="section-2-3.3.1"><code>op-bound</code>: the "classical" OpenID Connect identifier. The identifier is built by concatinating the <code>sub</code> value, created and maintained by the OP, and the OP's issuer URL.<br><a href="#section-2-3.3.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.3.1"><code>op-bound</code>: the "classical" OpenID Connect identifier. The identifier is built by concatinating the <code>sub</code> value, created and maintained by the OP, and the OP's issuer URL.<a href="#section-2-3.3.1" class="pilcrow">¶</a></p>
 </li>
 </ul>
 <dl class="dlParallel" id="section-2-4">
-        <dt id="section-2-4.1">did_methods_supported</dt>
+        <dt id="section-2-4.1">did<em>methods</em>supported</dt>
 <dd id="section-2-4.2">
           <p id="section-2-4.2.1">OPTIONAL. A JSON array of strings used in conjunction with the identifier type <code>did</code>. This metadata element describes whether the client supports the resolution of <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span> and further more which decentralized identifier methods. Each array value contains the DID method name as per <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span>. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see <span>[<a href="#did_specs_registry" class="xref">did_specs_registry</a>]</span>).<a href="#section-2-4.2.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1296,17 +1315,8 @@ tr:nth-child(2n+1) > td {
 <p id="section-2-6">A non-normative extract from the OP Metadata depicting these elements<a href="#section-2-6" class="pilcrow">¶</a></p>
 <div id="section-2-7">
 <pre class="sourcecode lang-json">{
-    "subject_id_types": [
-        "jwkthumb",
-        "did",
-        "op-bound"
-    ],
-    "did_methods_supported": [
-        "elem",
-        "ion",
-        "sov",
-        "v1"
-    ]
+  "subject_id_types": ["jwkthumb", "did", "op-bound"],
+  "did_methods_supported": ["elem", "ion", "sov", "v1"]
 }
 </pre><a href="#section-2-7" class="pilcrow">¶</a>
 </div>
@@ -1319,11 +1329,11 @@ tr:nth-child(2n+1) > td {
       </h2>
 <p id="section-3-1">The following section outlines the additional metadata elements required for a client to express support for specific identifier types.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <dl class="dlParallel" id="section-3-2">
-        <dt id="section-3-2.1">sub_id_types_supported</dt>
+        <dt id="section-3-2.1">sub<em>id</em>types_supported</dt>
 <dd id="section-3-2.2">
           <p id="section-3-2.2.1">OPTIONAL. An array of strings. This metadata element describes the subject identifier types supported by the registering client. Valid values MUST be a subset of those that the OP the client is registering with supports, which can be found in respective <code>sub_id_types_supported</code> metadata element.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </dd>
-<dt id="section-3-2.3">did_methods_supported</dt>
+<dt id="section-3-2.3">did<em>methods</em>supported</dt>
 <dd id="section-3-2.4">
           <p id="section-3-2.4.1">OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span> and further more which decentralized identifier methods. Each array element contains the DID method name as per <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span>. A full enumeration can be found in the "decentralized identifier method registry" (see <span>[<a href="#did_specs_registry" class="xref">did_specs_registry</a>]</span>) the client supports.<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1371,11 +1381,11 @@ tr:nth-child(2n+1) > td {
 <p id="section-4-10">A non-normative example of the claims in a subject identifier assertion is shown in the following.<a href="#section-4-10" class="pilcrow">¶</a></p>
 <div id="section-4-11">
 <pre class="sourcecode lang-json">{
-    "iss": "did:example:12345",
-    "sub": "https://issuer.com/",
-    "aud": "s6BhdRkqt3",
-    "nonce": "n-0S6_WzA2Mj",
-    "iat": 1311280970
+  "iss": "did:example:12345",
+  "sub": "https://issuer.com/",
+  "aud": "s6BhdRkqt3",
+  "nonce": "n-0S6_WzA2Mj",
+  "iat": 1311280970
 }
 </pre><a href="#section-4-11" class="pilcrow">¶</a>
 </div>
@@ -1397,7 +1407,7 @@ tr:nth-child(2n+1) > td {
       </h2>
 <p id="section-5-1">This following section defines the additional (JWT) claims required to express the End-User as the subject of an id token through the use of a portable subject identifier.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <dl class="dlParallel" id="section-5-2">
-        <dt id="section-5-2.1">sub_id_type</dt>
+        <dt id="section-5-2.1">sub<em>id</em>type</dt>
 <dd id="section-5-2.2">
           <p id="section-5-2.2.1">OPTIONAL. Subject identifier type, this claim has a value which reports the type of subject identifier reported in the <code>sub</code> claim of the id token and therefore how to validate the <code>sub_ast</code> claim. For allowed values see <a href="#op_metadata" class="xref">Section 2</a>.<a href="#section-5-2.2.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1417,14 +1427,14 @@ tr:nth-child(2n+1) > td {
 <p id="section-5-6">A non-normative example of the contents of an id token.<a href="#section-5-6" class="pilcrow">¶</a></p>
 <div id="section-5-7">
 <pre class="sourcecode lang-json">{
-    "iss": "https://issuer.com/",
-    "sub": "did:example:12345",
-    "sub_id_type": "did",
-    "sub_ast": "&lt;jwt-prooving-control-of-sub&gt;",
-    "aud": "https://client.example.org/cb",
-    "nonce": "n-0S6_WzA2Mj",
-    "exp": 1311281970,
-    "iat": 1311280970
+  "iss": "https://issuer.com/",
+  "sub": "did:example:12345",
+  "sub_id_type": "did",
+  "sub_ast": "&lt;jwt-prooving-control-of-sub&gt;",
+  "aud": "https://client.example.org/cb",
+  "nonce": "n-0S6_WzA2Mj",
+  "exp": 1311281970,
+  "iat": 1311280970
 }
 </pre><a href="#section-5-7" class="pilcrow">¶</a>
 </div>
@@ -1437,7 +1447,7 @@ tr:nth-child(2n+1) > td {
 <p id="section-5.1-1">The RP first performs the Authentication Response Validation as defined in steps as defined <span>[<a href="#OpenID" class="xref">OpenID</a>]</span>. This ensures backward compabtibility and security since any OIDC RPs that will use the <code>sub</code> value without performing the additional steps defined below will use the <code>sub</code> value in conjuction with the OP's issuer URL only.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1-2">In the next step, a portable identifier aware RP will perform the following checks:<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">A Relying Party processing an <code>id_token</code> that is making use of a portable subject identifier MUST employ the following additional validation steps beyond those defined in <a href="https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation">Section 3.1.3.7</a> of <span>[<a href="#OpenID" class="xref">OpenID</a>]</span>.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1-4">// TODO validating the sub_\st and its relationship to the sub value when sub_id_type is not the default ...?<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">// TODO validating the sub_\st and its relationship to the sub value when sub<em>id</em>type is not the default ...?<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1465,20 +1475,63 @@ tr:nth-child(2n+1) > td {
 </div>
 </section>
 </div>
-<div id="security-considerations">
+<div id="usecases">
 <section id="section-7">
-      <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      <h2 id="name-usecases">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-usecases" class="section-name selfRef">Usecases</a>
       </h2>
-<p id="section-7-1">In traditional OpenID Connect the End-User that is authenticated by the provider during an OpenID Connect flow is referred to as the subject in the resulting <code>id_token</code> that is produced. Importantly the <code>sub</code> value that denotes an identifier for End-User MUST be processed in conjunction with the <code>iss</code> value as the End-Users identity is strictly tied to the providers domain. This limitation is what makes transferring an End-Users identity between providers difficult to achieve.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">With portable subject identifiers the relationship between the End-User and the provider changes.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<div id="planned-provider-death">
+<section id="section-7.1">
+        <h3 id="name-planned-provider-death">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-planned-provider-death" class="section-name selfRef">Planned Provider Death</a>
+        </h3>
+<p id="section-7.1-1"><em>An Identity Provider Going out of business</em><a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">Alice as a user of the web has been leveraging the standard technology of OpenID Connect to login to various websites (Relying Parties) using the federated login services provided by her chosen provider <a href="https://logmein.example">https://logmein.example</a>. She becomes aware via communication from logmein.example that as a service provider they intend to stop offering the federated login services she has become reliant upon. Not wanting to loose the identity she has established with numerous websites (Relying Parties), Alice logs into <a href="https://logmein.example">https://logmein.example</a> and clicks the "export identities" option available, resulting in her downloading a file to her local device. After careful research, Alice establishes that <a href="https://loginsareus.example">https://loginsareus.example</a> is a suitable provider for her federated login services going forward, so she establishes a relationship with the provider and clicks the "import identities" option the provider has available, during this process she uploads the file she previously downloaded from her old login provider. Once the process is complete Alice is now able to use <a href="https://loginsareus.example">https://loginsareus.example</a> to login to the same websites as before with no further interruption.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="account-consolidation">
+<section id="section-7.2">
+        <h3 id="name-account-consolidation">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-account-consolidation" class="section-name selfRef">Account Consolidation</a>
+        </h3>
+<p id="section-7.2-1"><em>Consolidating accounts across multiple providers into one</em><a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.2-2">Bob as a user of the web has been leveraging the standard technology of OpenID Connect to login to various websites (Relying Parties), however due to a variety of different factors like differing sign up journey's across the different websites, Bob is using numerous providers across the different websites to "login". Bob feeling overwhelmed with the different login options he is greeted with every time he sees a login page, struggling to remember which provider he uses where, does some research to see whether he can simplify things. His research informs him of the capability to consolidate his accounts/identities back into a single provider, finding this option appealing he embarks on the process. Bob starts by logging into the providers he wishes to no longer use selecting the "export identities" option available, resulting in him downloading a file to his local device per provider. Once complete with the export process, Bob logs into the provider he has selected to be his only provider and clicks the "import identities" option the provider has available, during this process he uploads the file he previously downloaded from his old login providers. Once the process is complete Bob is now able to login to all the websites he was able to previously but instead having only to remember one provider.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="implementation-considerations">
 <section id="section-8">
+      <h2 id="name-implementation-consideratio">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-implementation-consideratio" class="section-name selfRef">Implementation Considerations</a>
+      </h2>
+<div id="did-methods">
+<section id="section-8.1">
+        <h3 id="name-did-methods">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-did-methods" class="section-name selfRef">DID Methods</a>
+        </h3>
+<p id="section-8.1-1">If a provider or relying party wishes to offer support for <span>[<a href="#decentralized_identifiers" class="xref">decentralized_identifiers</a>]</span> as a valid form of portable subject identifier then one aspect of consideration is which DID methods to support. A DID method is the primary way in which different types of DID's are classified, the did method governs several key properties about the identifier including how the identifier is resolved and how changes to to the information associated to the identifier is controlled if applicable.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-9">
+      <h2 id="name-security-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-9-1">In traditional OpenID Connect the End-User that is authenticated by the provider during an OpenID Connect flow is referred to as the subject in the resulting <code>id_token</code> that is produced. Importantly the <code>sub</code> value that denotes an identifier for End-User MUST be processed in conjunction with the <code>iss</code> value as the End-Users identity is strictly tied to the providers domain. This limitation is what makes transferring an End-Users identity between providers difficult to achieve.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-2">With portable subject identifiers the relationship between the End-User and the provider changes.<a href="#section-9-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-10">
       <h2 id="name-normative-references">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
+<dt id="OpenIDPorting">[OpenIDPorting]</dt>
+<dd>
+<span class="refAuthor">Manger, J.</span><span class="refAuthor">, Lodderstedt, T.</span><span class="refAuthor">, and A. Gleditsch</span>, <span class="refTitle">"OpenID Connect Account Porting"</span>, <time datetime="2017-03-06">6 March 2017</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-account-porting-1_0.html">https://openid.net/specs/openid-connect-account-porting-1_0.html</a>&gt;</span>. </dd>
 <dt id="RFC2119">[RFC2119]</dt>
 <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
@@ -1494,14 +1547,11 @@ tr:nth-child(2n+1) > td {
 <dt id="OpenID">[OpenID]</dt>
 <dd>
 <span class="refAuthor">Sakimura, N.</span><span class="refAuthor">, Bradley, J.</span><span class="refAuthor">, Jones, M.</span><span class="refAuthor">, de Medeiros, B.</span><span class="refAuthor">, and C. Mortimore</span>, <span class="refTitle">"OpenID Connect Core 1.0 incorporating errata set 1"</span>, <time datetime="2014-11-08">8 November 2014</time>, <span>&lt;<a href="http://openid.net/specs/openid-connect-core-1_0.html">http://openid.net/specs/openid-connect-core-1_0.html</a>&gt;</span>. </dd>
-<dt id="OpenIDPorting">[OpenIDPorting]</dt>
-<dd>
-<span class="refAuthor">Manger, J.</span><span class="refAuthor">, Lodderstedt, T.</span><span class="refAuthor">, and A. Gleditsch</span>, <span class="refTitle">"OpenID Connect Account Porting"</span>, <time datetime="2017-03-06">6 March 2017</time>, <span>&lt;<a href="https://openid.net/specs/openid-connect-account-porting-1_0.html">https://openid.net/specs/openid-connect-account-porting-1_0.html</a>&gt;</span>. </dd>
 </dl>
 </section>
-<section id="section-9">
+<section id="section-11">
       <h2 id="name-informative-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
       </h2>
 <dl class="references">
 <dt id="RFC7515">[RFC7515]</dt>

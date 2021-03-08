@@ -25,7 +25,7 @@ fullname = "Torsten Lodderstedt"
 #role = "editor"
 organization = "yes.com"
 [author.address]
-    email = "torsten@lodderstedt.net"
+email = "torsten@lodderstedt.net"
 
 [[author]]
 initials = "K."
@@ -76,18 +76,18 @@ TODO
 
 [TBD] I think we need to first describe the fundamental idea. The following bullets are intended to be a starting point.
 
-* client sets up relationsship
-* client sends standard OpenID COnnect authentication request
-* OP authenticates end-user
-* OP determines identifier types (and did methods) the client supports
-* OP offers suitable identifiers to the end-user
-* end-user picks identifier
-* OP and end-user create proof of possession (Subject Identifier Assertion)
-* OP creates id token and embedds subject identifier assertion
-* OP responds to RP with id token
-* RP validates id token
-* RP validates subject identifier assertion
-* RP uses portable identifier
+- client sets up relationsship
+- client sends standard OpenID COnnect authentication request
+- OP authenticates end-user
+- OP determines identifier types (and did methods) the client supports
+- OP offers suitable identifiers to the end-user
+- end-user picks identifier
+- OP and end-user create proof of possession (Subject Identifier Assertion)
+- OP creates id token and embedds subject identifier assertion
+- OP responds to RP with id token
+- RP validates id token
+- RP validates subject identifier assertion
+- RP uses portable identifier
 
 // Diagrams for review
 
@@ -97,14 +97,15 @@ TODO
 
 The following section outlines how an OpenID provider can use the following meta-data elements in its openid-configuration as defined in [@!OpenID-Discovery] to advertise the identifier types it supports, which especially includes metadata about portable subject identifiers.
 
-sub\_id\_types\_supported
+sub_id_types_supported
 : OPTIONAL. A JSON array of strings. This metadata element describes the subject identifier types supported by the respective OP. This specification defines the following values:
-* `jwkthumb`: the identifier constitutes the thumbprint of a JWK 
-* `did`: the identifier constitutes a decentralized identifier as defined in [@!decentralized_identifiers]
-* `op-bound`: the "classical" OpenID Connect identifier. The identifier is built by concatinating the `sub` value, created and maintained by the OP, and the OP's issuer URL.  
-    
-did\_methods\_supported
-: OPTIONAL. A JSON array of strings used in conjunction with the identifier type `did`. This metadata element describes whether the client supports the resolution of [@!decentralized_identifiers] and further more which decentralized identifier methods. Each array value contains the DID method name as per [@!decentralized_identifiers]. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]). 
+
+- `jwkthumb`: the identifier constitutes the thumbprint of a JWK
+- `did`: the identifier constitutes a decentralized identifier as defined in [@!decentralized_identifiers]
+- `op-bound`: the "classical" OpenID Connect identifier. The identifier is built by concatinating the `sub` value, created and maintained by the OP, and the OP's issuer URL.
+
+did_methods_supported
+: OPTIONAL. A JSON array of strings used in conjunction with the identifier type `did`. This metadata element describes whether the client supports the resolution of [@!decentralized_identifiers] and further more which decentralized identifier methods. Each array value contains the DID method name as per [@!decentralized_identifiers]. A full enumeration of DID methods can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]).
 
 [TBD] is this element required if the did subject identifier type is supported?
 
@@ -112,17 +113,8 @@ A non-normative extract from the OP Metadata depicting these elements
 
 ```json
 {
-    "subject_id_types": [
-        "jwkthumb",
-        "did",
-        "op-bound"
-    ],
-    "did_methods_supported": [
-        "elem",
-        "ion",
-        "sov",
-        "v1"
-    ]
+  "subject_id_types": ["jwkthumb", "did", "op-bound"],
+  "did_methods_supported": ["elem", "ion", "sov", "v1"]
 }
 ```
 
@@ -130,17 +122,17 @@ A non-normative extract from the OP Metadata depicting these elements
 
 The following section outlines the additional metadata elements required for a client to express support for specific identifier types.
 
-sub\_id\_types\_supported
+sub_id_types_supported
 : OPTIONAL. An array of strings. This metadata element describes the subject identifier types supported by the registering client. Valid values MUST be a subset of those that the OP the client is registering with supports, which can be found in respective `sub_id_types_supported` metadata element.
-    
-did\_methods\_supported
-: OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of [@!decentralized_identifiers] and further more which decentralized identifier methods. Each array element contains the DID method name as per [@!decentralized_identifiers]. A full enumeration can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]) the client supports. 
+
+did_methods_supported
+: OPTIONAL. An array of strings. This metadata element describes whether the client supports the resolution (point to a definition of did resolution) of [@!decentralized_identifiers] and further more which decentralized identifier methods. Each array element contains the DID method name as per [@!decentralized_identifiers]. A full enumeration can be found in the "decentralized identifier method registry" (see [@!did_specs_registry]) the client supports.
 
 [TBD] is this element required if the did subject identifier type is supported?
 
 # Subject Identifier Assertion {#subject_identifier_assertion}
 
-The Subject Identifier Assertion represents to End-user's proof of possession of the key material corresponding to a cryptographically verifiable identifier. This assertion is embedded by the OP into the ID token provided to the RP in response for an OpenID Connect authentication request. 
+The Subject Identifier Assertion represents to End-user's proof of possession of the key material corresponding to a cryptographically verifiable identifier. This assertion is embedded by the OP into the ID token provided to the RP in response for an OpenID Connect authentication request.
 
 This assertion MUST be of the form of a compact JWT.
 
@@ -160,7 +152,7 @@ aud
 : REQUIRED. the audience of the JWT represented by the client_id of the respective RP
 
 nonce
-: REQUIRED. the nonce as provided by the RP in the OpenID Connect request. This claims binds the subject identifier assertion to a particular transaction in orrder to prevent replay in a different transaction. 
+: REQUIRED. the nonce as provided by the RP in the OpenID Connect request. This claims binds the subject identifier assertion to a particular transaction in orrder to prevent replay in a different transaction.
 
 iat
 : iat. identifies the time when the subject identifier assertion was issued.
@@ -171,15 +163,15 @@ A non-normative example of the claims in a subject identifier assertion is shown
 
 ```json
 {
-    "iss": "did:example:12345",
-    "sub": "https://issuer.com/",
-    "aud": "s6BhdRkqt3",
-    "nonce": "n-0S6_WzA2Mj",
-    "iat": 1311280970
+  "iss": "did:example:12345",
+  "sub": "https://issuer.com/",
+  "aud": "s6BhdRkqt3",
+  "nonce": "n-0S6_WzA2Mj",
+  "iat": 1311280970
 }
 ```
 
-// Carefully consider what claims in the JWT for this assertion and their associated constraints i.e in reference to the id_token in which it will appear. 
+// Carefully consider what claims in the JWT for this assertion and their associated constraints i.e in reference to the id_token in which it will appear.
 
 // We should include a JWT header in the protected header that informs the consumer about the nature of the JWT? One option is to use the "typ" claim.
 // Needs to be defined and registered. Doing this prevents the assertion from being used out of its intended designation i.e id_token being used as an access_token.
@@ -197,12 +189,12 @@ A non-normative example of the claims in a subject identifier assertion is shown
 # Cryptographic Subject Identifier ID Token Extension
 
 This following section defines the additional (JWT) claims required to express the End-User as the subject of an id token through the use of a portable subject identifier.
-    
-sub\_id\_type
-: OPTIONAL. Subject identifier type, this claim has a value which reports the type of subject identifier reported in the `sub` claim of the id token and therefore how to validate the `sub_ast` claim. For allowed values see (#op_metadata). 
-    
-sub\_ast
-: REQUIRED. IF sub_id_type is not `op-bound`. Subject identifier assertion, this claim has a value that is of the form of a compact JWT (see (#subject_identifier_assertion)) which when validated prooves control of the subject identifier reported in the `sub` claim of the `id_token`. 
+
+sub_id_type
+: OPTIONAL. Subject identifier type, this claim has a value which reports the type of subject identifier reported in the `sub` claim of the id token and therefore how to validate the `sub_ast` claim. For allowed values see (#op_metadata).
+
+sub_ast
+: REQUIRED. IF sub_id_type is not `op-bound`. Subject identifier assertion, this claim has a value that is of the form of a compact JWT (see (#subject_identifier_assertion)) which when validated prooves control of the subject identifier reported in the `sub` claim of the `id_token`.
 
 // TODO link to the subject identifier assertion section and validation logic
 
@@ -210,32 +202,33 @@ sub\_ast
 
 sub
 : REQUIRED. Subject identifier - in case of portable identifiers (e.g. `sub_id_type` is `did`) a globally unique identifier who's type is defined by the `sub_id_type` claim in the id token and proof of control of the identifier can be established through validating the `sub_ast` claim in the same id token.
-   
+
 A non-normative example of the contents of an id token.
 
 ```json
 {
-    "iss": "https://issuer.com/",
-    "sub": "did:example:12345",
-    "sub_id_type": "did",
-    "sub_ast": "<jwt-prooving-control-of-sub>",
-    "aud": "https://client.example.org/cb",
-    "nonce": "n-0S6_WzA2Mj",
-    "exp": 1311281970,
-    "iat": 1311280970
+  "iss": "https://issuer.com/",
+  "sub": "did:example:12345",
+  "sub_id_type": "did",
+  "sub_ast": "<jwt-prooving-control-of-sub>",
+  "aud": "https://client.example.org/cb",
+  "nonce": "n-0S6_WzA2Mj",
+  "exp": 1311281970,
+  "iat": 1311280970
 }
 ```
+
 [TBD] add real sub ast example
 
 ## Additional ID Token Validation Steps
 
-The RP first performs the Authentication Response Validation as defined in steps as defined [@!OpenID]. This ensures backward compabtibility and security since any OIDC RPs that will use the `sub` value without performing the additional steps defined below will use the `sub` value in conjuction with the OP's issuer URL only. 
+The RP first performs the Authentication Response Validation as defined in steps as defined [@!OpenID]. This ensures backward compabtibility and security since any OIDC RPs that will use the `sub` value without performing the additional steps defined below will use the `sub` value in conjuction with the OP's issuer URL only.
 
 In the next step, a portable identifier aware RP will perform the following checks:
 
 A Relying Party processing an `id_token` that is making use of a portable subject identifier MUST employ the following additional validation steps beyond those defined in [Section 3.1.3.7](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation) of [@!OpenID].
 
-// TODO validating the sub\_\st and its relationship to the sub value when sub\_id\_type is not the default ...?
+// TODO validating the sub\_\st and its relationship to the sub value when sub_id_type is not the default ...?
 
 # Subject Identifier Types
 
@@ -247,7 +240,7 @@ TODO
 
 TODO
 
-## Usecases
+# Usecases
 
 ## Planned Provider Death
 
@@ -261,9 +254,9 @@ _Consolidating accounts across multiple providers into one_
 
 Bob as a user of the web has been leveraging the standard technology of OpenID Connect to login to various websites (Relying Parties), however due to a variety of different factors like differing sign up journey's across the different websites, Bob is using numerous providers across the different websites to "login". Bob feeling overwhelmed with the different login options he is greeted with every time he sees a login page, struggling to remember which provider he uses where, does some research to see whether he can simplify things. His research informs him of the capability to consolidate his accounts/identities back into a single provider, finding this option appealing he embarks on the process. Bob starts by logging into the providers he wishes to no longer use selecting the "export identities" option available, resulting in him downloading a file to his local device per provider. Once complete with the export process, Bob logs into the provider he has selected to be his only provider and clicks the "import identities" option the provider has available, during this process he uploads the file he previously downloaded from his old login providers. Once the process is complete Bob is now able to login to all the websites he was able to previously but instead having only to remember one provider.
 
-## Implementation Considerations
+# Implementation Considerations
 
-### DID Methods
+## DID Methods
 
 If a provider or relying party wishes to offer support for [@!decentralized_identifiers] as a valid form of portable subject identifier then one aspect of consideration is which DID methods to support. A DID method is the primary way in which different types of DID's are classified, the did method governs several key properties about the identifier including how the identifier is resolved and how changes to to the information associated to the identifier is controlled if applicable.
 
@@ -271,7 +264,7 @@ If a provider or relying party wishes to offer support for [@!decentralized_iden
 
 In traditional OpenID Connect the End-User that is authenticated by the provider during an OpenID Connect flow is referred to as the subject in the resulting `id_token` that is produced. Importantly the `sub` value that denotes an identifier for End-User MUST be processed in conjunction with the `iss` value as the End-Users identity is strictly tied to the providers domain. This limitation is what makes transferring an End-Users identity between providers difficult to achieve.
 
-With portable subject identifiers the relationship between the End-User and the provider changes. 
+With portable subject identifiers the relationship between the End-User and the provider changes.
 
 {backmatter}
 

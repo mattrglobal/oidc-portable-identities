@@ -247,6 +247,26 @@ TODO
 
 TODO
 
+## Usecases
+
+## Planned Provider Death
+
+_An Identity Provider Going out of business_
+
+Alice as a user of the web has been leveraging the standard technology of OpenID Connect to login to various websites (Relying Parties) using the federated login services provided by her chosen provider https://logmein.example. She becomes aware via communication from logmein.example that as a service provider they intend to stop offering the federated login services she has become reliant upon. Not wanting to loose the identity she has established with numerous websites (Relying Parties), Alice logs into https://logmein.example and clicks the "export identities" option available, resulting in her downloading a file to her local device. After careful research, Alice establishes that https://loginsareus.example is a suitable provider for her federated login services going forward, so she establishes a relationship with the provider and clicks the "import identities" option the provider has available, during this process she uploads the file she previously downloaded from her old login provider. Once the process is complete Alice is now able to use https://loginsareus.example to login to the same websites as before with no further interruption.
+
+## Account Consolidation
+
+_Consolidating accounts across multiple providers into one_
+
+Bob as a user of the web has been leveraging the standard technology of OpenID Connect to login to various websites (Relying Parties), however due to a variety of different factors like differing sign up journey's across the different websites, Bob is using numerous providers across the different websites to "login". Bob feeling overwhelmed with the different login options he is greeted with every time he sees a login page, struggling to remember which provider he uses where, does some research to see whether he can simplify things. His research informs him of the capability to consolidate his accounts/identities back into a single provider, finding this option appealing he embarks on the process. Bob starts by logging into the providers he wishes to no longer use selecting the "export identities" option available, resulting in him downloading a file to his local device per provider. Once complete with the export process, Bob logs into the provider he has selected to be his only provider and clicks the "import identities" option the provider has available, during this process he uploads the file he previously downloaded from his old login providers. Once the process is complete Bob is now able to login to all the websites he was able to previously but instead having only to remember one provider.
+
+## Implementation Considerations
+
+### DID Methods
+
+If a provider or relying party wishes to offer support for [@!decentralized_identifiers] as a valid form of portable subject identifier then one aspect of consideration is which DID methods to support. A DID method is the primary way in which different types of DID's are classified, the did method governs several key properties about the identifier including how the identifier is resolved and how changes to to the information associated to the identifier is controlled if applicable.
+
 # Security Considerations
 
 In traditional OpenID Connect the End-User that is authenticated by the provider during an OpenID Connect flow is referred to as the subject in the resulting `id_token` that is produced. Importantly the `sub` value that denotes an identifier for End-User MUST be processed in conjunction with the `iss` value as the End-Users identity is strictly tied to the providers domain. This limitation is what makes transferring an End-Users identity between providers difficult to achieve.

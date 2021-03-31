@@ -232,13 +232,15 @@ A Relying Party processing an `id_token` that is making use of a portable subjec
 
 # Subject Identifier Types
 
+A sub type is used by the OP to advertise which types of identifiers are supported for the `sub` claim. Two types are defined by this specification:
+
 ## JWK Thumbprint
 
-TODO
-
+JWK Thumbprint Subject type. When this subject type is used, the `sub` claim value MUST be the base64url encoded representation of the thumbprint of the key in the `sub_jwk` Claim. [RFC7638]
+    
 ## Decentralized Identifier
 
-TODO
+Decentralized Identifier subject type. When this subject type is used, the `sub` claim value MUST be a Decentralized Identifier (DID) following [DID-CORE](https://www.w3.org/TR/did-core/). 
 
 # Usecases
 
